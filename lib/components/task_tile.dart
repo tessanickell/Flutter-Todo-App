@@ -1,7 +1,6 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:todo_app/screens/editTask.dart';
 
 // ignore: must_be_immutable
 class TaskTile extends StatelessWidget {
@@ -38,27 +37,25 @@ class TaskTile extends StatelessWidget {
           icon: FluentIcons.delete_20_filled,
         ),
       ]),
-      child: Container(
-        child: Row(
-          children: [
-            //Checkbox
-            Checkbox(
-              value: taskCompleted,
-              onChanged: onChanged,
-              shape: const CircleBorder(),
-              checkColor: Colors.white,
-              fillColor: MaterialStateProperty.resolveWith((states) {
-                if (!states.contains(MaterialState.selected)) {
-                  return Colors.white;
-                }
-                return null;
-              }),
-            ),
+      child: Row(
+        children: [
+          //Checkbox
+          Checkbox(
+            value: taskCompleted,
+            onChanged: onChanged,
+            shape: const CircleBorder(),
+            checkColor: Colors.white,
+            fillColor: MaterialStateProperty.resolveWith((states) {
+              if (!states.contains(MaterialState.selected)) {
+                return Colors.white;
+              }
+              return Colors.black;
+            }),
+          ),
 
-            // Task Name
-            Text(taskName),
-          ],
-        ),
+          // Task Name
+          Text(taskName),
+        ],
       ),
     );
   }

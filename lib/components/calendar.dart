@@ -36,8 +36,8 @@ class _CalendarState extends State<Calendar> {
             decoration: BoxDecoration(
                 color: (todaysDate == day.weekday)
                     ? Colors.black
-                    : Color(0xffEBEBEB),
-                borderRadius: BorderRadius.all(Radius.circular(50.0))),
+                    : const Color(0xffEBEBEB),
+                borderRadius: const BorderRadius.all(Radius.circular(50.0))),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

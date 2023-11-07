@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/editTask.dart';
+import 'package:todo_app/screens/edit_task.dart';
 import 'package:todo_app/screens/home.dart';
-import 'package:todo_app/screens/newTask.dart';
 import 'package:todo_app/screens/onboarding.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,10 +19,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(fontFamily: GoogleFonts.forum().fontFamily),
       initialRoute: "/home",
       routes: {
-        "/onboarding": (context) => OnboardingScreen(),
-        "/home": (context) => HomeScreen(),
-        "/newTask": (context) => NewTask(),
-        "/editTask": (context) => EditTask(),
+        "/onboarding": (context) => const OnboardingScreen(),
+        "/home": (context) => const HomeScreen(),
+        "/editTask": (context) => const EditTask(),
       },
     );
   }

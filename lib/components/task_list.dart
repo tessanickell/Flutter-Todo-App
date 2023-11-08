@@ -1,23 +1,17 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_app/components/dialog_box.dart';
 import 'package:todo_app/components/task_tile.dart';
 import 'package:todo_app/models/Task.dart';
 import 'package:todo_app/screens/new_task.dart';
 
 class TaskList extends StatefulWidget {
   List<Task> taskList;
-  Function(Task) createNewTask;
-  Function(Task) deleteTask;
-  Function(Task) isTaskChecked;
 
-  TaskList(
-      {super.key,
-      required this.taskList,
-      required this.createNewTask,
-      required this.deleteTask,
-      required this.isTaskChecked});
+  TaskList({
+    super.key,
+    required this.taskList,
+  });
 
   @override
   State<TaskList> createState() => _TaskListState();
@@ -33,7 +27,7 @@ class _TaskListState extends State<TaskList> {
           children: [
             Text("Tasks",
                 style: GoogleFonts.manrope(
-                    fontSize: 22, fontWeight: FontWeight.w600)),
+                    fontSize: 25, fontWeight: FontWeight.w600)),
 
             // Add new task button
             IconButton(
@@ -45,14 +39,12 @@ class _TaskListState extends State<TaskList> {
               ),
               onPressed: () => {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            NewTask(addTask: widget.createNewTask)))
+                    context, MaterialPageRoute(builder: (context) => NewTask()))
               },
             ),
           ],
         ),
+        SizedBox(height: 10),
 
         // If no tasks are availible
         (widget.taskList.isEmpty)
@@ -65,12 +57,8 @@ class _TaskListState extends State<TaskList> {
                 itemCount: widget.taskList.length,
                 itemBuilder: (context, index) {
                   return TaskTile(
-                      taskName: widget.taskList[index].title,
-                      taskCompleted: widget.taskList[index].isComplete,
-                      onChanged: (value) =>
-                          widget.isTaskChecked(widget.taskList[index]),
-                      deleteTask: (context) =>
-                          widget.deleteTask(widget.taskList[index]));
+                    task: widget.taskList[index],
+                  );
                 },
               ),
       ],

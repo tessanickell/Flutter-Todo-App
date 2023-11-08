@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/models/Task.dart';
+import 'package:todo_app/store/taskstore.dart';
 
 class DeleteTaskDialog extends StatelessWidget {
-  VoidCallback onDelete;
-  VoidCallback onCancel;
-
+  final Task task;
   DeleteTaskDialog({
     super.key,
-    required this.onDelete,
-    required this.onCancel,
+    required this.task,
   });
 
   @override
@@ -36,7 +36,9 @@ class DeleteTaskDialog extends StatelessWidget {
                         borderRadius: BorderRadius.circular(0))),
 
                 // Dismiss Dialog
-                onPressed: onCancel,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
@@ -54,7 +56,11 @@ class DeleteTaskDialog extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0)),
                 ),
-                onPressed: onDelete,
+                onPressed: () {
+                  Provider.of<TaskStore>(context, listen: false)
+                      .deleteTask(task);
+                  Navigator.of(context).pop();
+                },
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
